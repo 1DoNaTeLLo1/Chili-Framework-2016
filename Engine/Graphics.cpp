@@ -341,6 +341,20 @@ void Graphics::DrawRectDim(int x, int y, int width, int height, Color c)
 	DrawRect(x, y, x + width, y + height, c);
 }
 
+void Graphics::DrawCircle(int x, int y, int radius, Color c)
+{
+	for (int j = y - radius + 1; j < y + radius; j++)
+	{
+		for (int i = x - radius + 1; i < x + radius; i++)
+		{
+			if ((x - i)*(x - i) + (y - j)*(y - j) <= radius * radius)
+			{
+				PutPixel(i, j, c);
+			}
+		}
+	}
+}
+
 //////////////////////////////////////////////////
 //           Graphics Exception
 Graphics::Exception::Exception( HRESULT hr,const std::wstring& note,const wchar_t* file,unsigned int line )
